@@ -1,24 +1,18 @@
-title POST to /notes
+Kayttaja->Selain: Kirjoittaa osoitekenttään 
 note right of Kayttaja:
-    Kayttaja kirjoittaa muistiinpanon 
-    ja painaa tallennuspainiketta
-    end note
-Kayttaja->Selain: Painallus Tallenna-nappiin 
-
-
-Selain->Palvelin: POST /new_note_spa
-note right of Selain:
-    POST-pyyntö sisältää request 
-    bodyssa muistiinpanon
-    end note
-note left of Palvelin:
-    Palvelin päivittää tietokantaan uuden viestin
-    end note
-Palvelin->Selain: Status 201 created
-note right of Kayttaja
-    Näkymä voi päivittyä jo 
-    ennen palvelimen vastausta.
-    Päivitys tapahtuu selaimen 
-    muistissa olevan tiedon pohjalta
+https://fullstack-exampleapp.herokuapp.com/spa
 end note
-Selain->Kayttaja: Selain päivittää näkymin
+Selain->Palvelin: GET https://fullstack-exampleapp.herokuapp.com/spa
+Palvelin->Selain: Status 200, index.html
+Selain->Palvelin: GET main.css
+Palvelin->Selain: Status 200, main.css
+Selain->Palvelin: Get main.js
+Palvelin->Selain: Status 200, main.js
+Note left of Selain:
+    Sivu voidaan näyttää käyttäjälle
+    esim. latausanimaation kera
+end note
+Selain->Kayttaja: Sivu piirretään
+Selain->Palvelin: Get data.json
+Palvelin->Selain: Status 200, data.json
+Selain->Kayttaja: Muistiinpanot renderöidään käyttäjälle
